@@ -41,10 +41,11 @@ int main(void)
     	}
     	if(cyhal_gpio_read(P9_7)==0){
     		cyhal_system_delay_ms(250);
+    		cyhal_pwm_start(&pwm_obj);
     		int x=100;
     		while(x!=-20){
     		   cyhal_pwm_set_duty_cycle(&pwm_obj,x,5000);
-    		   cyhal_pwm_start(&pwm_obj);
+
     		   cyhal_system_delay_ms(200);
     		   x-=20;
     		}
