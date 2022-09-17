@@ -23,7 +23,7 @@ int main(void)
     cyhal_pwm_init(&pwm_obj, P9_2, NULL);
     cyhal_pwm_set_duty_cycle(&pwm_obj,100,5000);
     cyhal_pwm_start(&pwm_obj);
-    int x=120;
+    int x=100;
     for (;;)
     {
 
@@ -56,7 +56,6 @@ int main(void)
     		cyhal_pwm_set_duty_cycle(&pwm_obj,x,5000);
     		if(x==0){
     		 x=120;
-    		 cyhal_pwm_set_duty_cycle(&pwm_obj,0,5000);
     	 }
     	}
     }
