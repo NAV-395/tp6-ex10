@@ -21,7 +21,9 @@ int main(void)
     cyhal_gpio_init(P9_4, CYHAL_GPIO_DIR_INPUT,CYHAL_GPIO_DRIVE_PULLUP, 1);
     cyhal_gpio_init(P9_7, CYHAL_GPIO_DIR_INPUT,CYHAL_GPIO_DRIVE_PULLUP, 1);
     cyhal_pwm_init(&pwm_obj, P9_2, NULL);
-
+    cyhal_pwm_set_duty_cycle(&pwm_obj,100,5000);
+    cyhal_pwm_start(&pwm_obj);
+    int x=120;
     for (;;)
     {
 
@@ -40,7 +42,7 @@ int main(void)
     		}
     	}
     	if(cyhal_gpio_read(P9_7)==0){
-    		cyhal_system_delay_ms(250);
+    		/*cyhal_system_delay_ms(250);
     		cyhal_pwm_start(&pwm_obj);
     		int x=100;
     		while(x!=-20){
@@ -48,7 +50,14 @@ int main(void)
     		   cyhal_system_delay_ms(200);
     		   x-=20;
     		}
-    		 cyhal_pwm_stop(&pwm_obj);
+    		 cyhal_pwm_stop(&pwm_obj);*/
+    		cyhal_system_delay_ms(250);
+    		x-=20;
+    		cyhal_pwm_set_duty_cycle(&pwm_obj,x,5000);
+    		if(x==0){
+    		 x=120;
+    		 cyhal_pwm_set_duty_cycle(&pwm_obj,0,5000);
+    	 }
     	}
     }
 }
